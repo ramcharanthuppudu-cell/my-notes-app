@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: quicknotes-app
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_PATH
+        value: /var/data/notes.db
+    disk:
+      name: quicknotes-data
+      mountPath: /var/data
+      sizeGB: 1

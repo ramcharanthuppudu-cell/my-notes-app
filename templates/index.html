@@ -3,38 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quick Note App</title>
+    <meta name="theme-color" content="#f6f7fb" />
+    <title>Quick Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <h1>Quick Notes</h1>
+        <a class="brand" href="/" aria-label="Quick Notes home">
+          <span class="brand-icon" aria-hidden="true">✳</span>
+          <span>quicknotes</span>
+        </a>
+        <span class="topbar-label">A little space for your thoughts</span>
       </header>
 
-      <main class="content">
-        <section class="composer card">
-          <h2>Create Note</h2>
+      <main>
+        <section class="intro">
+          <p class="eyebrow">YOUR PERSONAL NOTEPAD</p>
+          <h1>Make room for<br /><span>what matters.</span></h1>
+          <p class="intro-copy">Catch a thought before it wanders off.</p>
+        </section>
+
+        <section class="composer card" aria-labelledby="composer-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">NEW THOUGHT</p>
+              <h2 id="composer-title">Write a note</h2>
+            </div>
+            <span class="sparkle" aria-hidden="true">✦</span>
+          </div>
           <form id="note-form">
-            <textarea
-              id="note-input"
-              rows="6"
-              maxlength="1000"
-              placeholder="Write your note here..."
-              required
-            ></textarea>
-            <div class="actions">
-              <button type="submit">Save Note</button>
+            <label class="visually-hidden" for="note-input">Note content</label>
+            <textarea id="note-input" rows="4" maxlength="1000" placeholder="What’s on your mind?" required></textarea>
+            <div class="composer-footer">
+              <span class="hint">Up to 1,000 characters</span>
+              <button class="button button-primary" type="submit"><span>Save note</span><span aria-hidden="true">↗</span></button>
             </div>
           </form>
           <p id="status" class="status" aria-live="polite"></p>
         </section>
 
-        <section class="notes-panel card">
-          <h2>Saved Notes</h2>
-          <div id="notes-list" class="notes-list"></div>
+        <section class="notes-section" aria-labelledby="notes-title">
+          <div class="notes-heading">
+            <div>
+              <p class="eyebrow">THE COLLECTION</p>
+              <h2 id="notes-title">Your notes <span id="notes-count" class="count-badge">0</span></h2>
+            </div>
+          </div>
+          <div id="notes-list" class="notes-list" aria-live="polite"></div>
         </section>
       </main>
+      <footer>Made for the thoughts worth keeping <span aria-hidden="true">✳</span></footer>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
