@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Note App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <h1>Quick Notes</h1>
+      </header>
+
+      <main class="content">
+        <section class="composer card">
+          <h2>Create Note</h2>
+          <form id="note-form">
+            <textarea
+              id="note-input"
+              rows="6"
+              maxlength="1000"
+              placeholder="Write your note here..."
+              required
+            ></textarea>
+            <div class="actions">
+              <button type="submit">Save Note</button>
+            </div>
+          </form>
+          <p id="status" class="status" aria-live="polite"></p>
+        </section>
+
+        <section class="notes-panel card">
+          <h2>Saved Notes</h2>
+          <div id="notes-list" class="notes-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
